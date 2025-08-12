@@ -49,12 +49,21 @@ Lastly, while you can perform a regression analysis, you cannot truly hold all e
 #Data Sources for the Project
 
 References:
+
 Consumption-based CO₂ emissions per capita vs. GDP per capita. Our World in Data. (2024). https://ourworldindata.org/grapher/consumption-co2-per-capita-vs-gdppc 
+
 Consumption-based CO₂ emissions per capita vs. human development index. Our World in Data. (2024). https://ourworldindata.org/grapher/per-capita-co-emissions-vs-human-development-index
+
 Daily supply of calories per person. Our World in Data. (2024). https://ourworldindata.org/grapher/daily-per-capita-caloric-supply
+
 Expected years of schooling. Our World in Data. (2025). https://ourworldindata.org/grapher/expected-years-of-schooling 
+
 Share of population using at least a basic drinking water source. Our World in Data. (2024). https://ourworldindata.org/grapher/population-using-at-least-basic-drinking-water
+
 Share of the population using at least basic sanitation services. Our World in Data. (2024). https://ourworldindata.org/grapher/share-of-population-with-improved-sanitation-faciltities
+
 Share of the population with access to electricity. Our World in Data. (2025, January 24). https://ourworldindata.org/grapher/share-of-the-population-with-access-to-electricity
+
 Total net enrolment rate in primary education. Our World in Data. (2025). https://ourworldindata.org/grapher/total-net-enrollment-rate-in-primary-education
+
 Vanderslott, S., Dattani, S., Spooner, F., & Roser, M. (2024, February). Vaccination. Our World in Data. https://ourworldindata.org/vaccination
