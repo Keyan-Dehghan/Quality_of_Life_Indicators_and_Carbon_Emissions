@@ -47,6 +47,7 @@ Another issue with this sort of analysis is that you can’t just target some of
 Lastly, while you can perform a regression analysis, you cannot truly hold all else equal, because aiming to increase access to electricity will invariably lead to a higher GDP. As a result, I believe the model showing how certain variables affect GDP is flawed, and likely suffers from methodological issues.
 
 #Data Sources for the Project
+
 References:
 Consumption-based CO₂ emissions per capita vs. GDP per capita. Our World in Data. (2024). https://ourworldindata.org/grapher/consumption-co2-per-capita-vs-gdppc 
 Consumption-based CO₂ emissions per capita vs. human development index. Our World in Data. (2024). https://ourworldindata.org/grapher/per-capita-co-emissions-vs-human-development-index
