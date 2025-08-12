@@ -1,0 +1,104 @@
+#HDI and GDP vs CO2 Table (Tab #1)
+
+#This tab merges all of the information from the HDI vs CO2 spreadsheet, with the GDP data 
+#from the GDP vs CO2 spreadsheet using an inner join.
+
+SELECT HDI_vs_CO2.*, GDP_vs_CO2.`GDP per capita, PPP (constant 2021 international dollars)`
+FROM `hdi vs per capita consumption based co2 consumption - sheet1` AS HDI_vs_CO2
+INNER JOIN `gdp per capita ppp vs per capita consumption based co2 - sheet1` AS GDP_vs_CO2
+ON HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = GDP_vs_CO2.`Country and Year (PPP vs CO2 Emis)`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Merged Table With Control Variables (Tab #2)
+
+
+#This tab merges all of the variables used to make the original excel sheet for the project
+#bearing in mind that not all of them were used for the final analysis, 
+#and that the data that was joined here was cleaned for the final analysis
+
+
+create table final_living_standards_vs_CO2_emissions AS
+
+SELECT GDP_and_HDI_vs_CO2.*,
+daily_cal_supply.`Daily calorie supply per person`, 
+Exp_yrs_school.`Expected years of schooling`,
+Gini_Index.`Gini coefficient (2017 prices)`,
+Hep_B_vax.`Share of 1 y/o with three doses of the hepatitis B vaccine`,
+Improved_Water.`Share of the population using improved water sources`,
+Low_Carbon_Intensity.`Low-carbon energy (% equivalent primary energy)`,
+Mean_Yrs_School.`Avg Yrs of Education for 15-64 years`,
+Polio_Vax_Rate.`Share of 1 y/o with three polio vaccine doses`,
+Basic_Water.`Share of the population using basic drinking water services`,
+Improved_Sanitation.`Share of the population using basic sanitation services`,
+Primary_School_Enrollment.`Net enrolment rate in primary education`,
+Measles_Vax_Rate.`Share of children fully vaccinated against measles`,
+Electrification_Share.`Access to electricity (% of population)`,
+DTP3_Vax_Coverage.`Share of 1 y/o with DTP3 vaccines`
+
+
+FROM `merged_GDP_and_HDI_vs_CO2_emissions` AS GDP_and_HDI_vs_CO2
+
+
+LEFT JOIN `daily calorie supply` AS daily_cal_supply ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = daily_cal_supply.`Country and Year (Calories vs GDP Per Capita)`
+LEFT JOIN `expected years of schooling` AS Exp_yrs_school ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Exp_yrs_school.`Country and Year (Expected Schooling)`
+LEFT JOIN `gini index by country` AS Gini_Index ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Gini_Index.`Country and Year (Gini Index)`
+LEFT JOIN `hep b immunization in 1 y_o children` AS Hep_B_vax ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Hep_B_vax.`Country and Year (Hepatitis B)`
+LEFT JOIN `improved water sources` AS Improved_Water ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Improved_Water.`Country and Year (Improved Water vs GDP Per Capita)`
+LEFT JOIN `low carbon intensity` AS Low_Carbon_Intensity ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Low_Carbon_Intensity.`Country and Year (Low Carbon Intensity)`
+LEFT JOIN `mean years of schooling (15-64)` AS Mean_Yrs_School ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Mean_Yrs_School.`Country and Year (Mean Yrs Schooling)`
+
+LEFT JOIN `polio vaccine coverage by 1 year olds` AS Polio_Vax_Rate ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Polio_Vax_Rate.`Country and Year (Polio Coverage)`
+LEFT JOIN `population share using basic water services` AS Basic_Water ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Basic_Water.`Country and Year (Basic Drinking Water)`
+LEFT JOIN `population share with improved sanitation` AS Improved_Sanitation ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Improved_Sanitation.`Country and Year (Improved Sanitation)`
+LEFT JOIN `primary education net enrollment rate` AS Primary_School_Enrollment ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Primary_School_Enrollment.`Country and Year (Primary School Enrollment Rate)`
+LEFT JOIN `share of children vaccinated against measles` AS Measles_Vax_Rate ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Measles_Vax_Rate.`Country and Year (Measles Vaccination Rate)`
+LEFT JOIN `share of electrification` AS Electrification_Share ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = Electrification_Share.`Country and Year (Elec)`
+LEFT JOIN `vaccination coverage dtp3` AS DTP3_Vax_Coverage ON GDP_and_HDI_vs_CO2.`Country and Year (HDI vs CO2 Emis)` = DTP3_Vax_Coverage.`Country and Year (Vax)`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Cleaned Merged Table With Control Variables (Tab #3)
+
+
+#This tab merges the table with a table on low carbon energy (after the data had been cleaned), however, 
+#the low carbon energy portion wasn't used for the final analysis
+
+create table Living_Standard_Vs_Per_Capita_Consumption_Based_CO2_Emissions AS
+SELECT upd.*, LCI.`Low-carbon energy (% equivalent primary energy)` FROM `updat_living_standards_vs_per_capita_co2_emissions` AS upd
+LEFT JOIN `low carbonintensity - sheet1` AS LCI
+ON upd.`Country and Year (HDI vs CO2 Emis)` = LCI.`Country and Year (Low Carbon Intensity)`;
